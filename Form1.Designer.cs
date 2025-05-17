@@ -1,27 +1,26 @@
 ﻿namespace HourChimer
 {
-    partial class Form1
-    {
-        /// <summary>
-        ///  Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
-        private System.Windows.Forms.NotifyIcon notifyIcon;
-        private System.Windows.Forms.ContextMenuStrip notifyIconMenu;
-        private System.Windows.Forms.ToolStripMenuItem exitMenuItem;
+  partial class Form1
+  {
+    /// <summary>
+    ///  Required designer variable.
+    /// </summary>
+    private System.ComponentModel.IContainer components = null;
+    private System.Windows.Forms.NotifyIcon notifyIcon;
+    private System.Windows.Forms.ContextMenuStrip notifyIconMenu;
+    private System.Windows.Forms.ToolStripMenuItem exitMenuItem;
+    private System.Windows.Forms.Timer hourTimer; // 추가
 
-        /// <summary>
-        ///  Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+    /// <summary>
+    ///  Clean up any resources being used.
+    /// </summary>
+    /// <param name="disposing">true if managed resources should be disposed; otherwise.</param>
+    protected override void Dispose(bool disposing)
+    {
+      if (disposing && (components != null))
+        components.Dispose();
+      base.Dispose(disposing);
+    }
 
     #region Windows Form Designer generated code
 
@@ -34,6 +33,7 @@
       this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
       this.notifyIconMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
       this.exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.hourTimer = new System.Windows.Forms.Timer(this.components); // 추가
 
       SuspendLayout();
       // 
@@ -54,6 +54,10 @@
       this.notifyIcon.Text = "HourChimer";
       this.notifyIcon.Visible = true;
       this.notifyIcon.ContextMenuStrip = this.notifyIconMenu;
+      // 
+      // hourTimer
+      // 
+      this.hourTimer.Interval = 1000; // 1초마다 Tick 발생
       // 
       // Form1
       // 
