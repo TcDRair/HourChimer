@@ -8,4 +8,11 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>true</SelfContained> <!-- .NET 런타임 포함(권장) -->
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier> <!-- 또는 win-arm64, win-x86 등 -->
+    <PublishTrimmed>false</PublishTrimmed> <!-- 트리밍은 WinForms에서 권장하지 않음 -->
+  </PropertyGroup>
+
 </Project>

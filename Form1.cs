@@ -1,4 +1,4 @@
-#define HOURCHIMER_DEBUG // DEBUG_MODE
+Ôªø// #define HOURCHIMER_DEBUG // DEBUG_MODE
 
 namespace HourChimer
 {
@@ -9,10 +9,18 @@ namespace HourChimer
       this.FormClosing += Form1_FormClosing;
       this.hourTimer.Tick += HourTimer_Tick;
       this.hourTimer.Start();
+      this.Load += Form1_Load;
     }
 
     private bool reallyClose = false;
     private int lastHour = -1;
+
+    private void Form1_Load(object? sender, EventArgs e) {
+      // this.Hide(); // Not working as expected
+      this.ShowInTaskbar = false;
+      this.WindowState = FormWindowState.Minimized;
+      this.Visible = false;
+    }
 
     private void Form1_FormClosing(object? sender, FormClosingEventArgs e) {
       if (!reallyClose) {
@@ -21,7 +29,7 @@ namespace HourChimer
       }
     }
 
-    // "¡æ∑·" ∏ﬁ¥∫ø°º≠ »£√‚«“ ∏ﬁº≠µÂ
+    // Method to be called when the "Exit" menu item (in the notify icon) is clicked
     public void ExitApplication() {
       reallyClose = true;
       Application.Exit();
@@ -40,7 +48,7 @@ namespace HourChimer
         lastHour = now.Hour;
         notifyIcon.ShowBalloonTip(
           5000, // milliseconds
-          "¡§∞¢ æÀ∏≤",
+          "Ï†ïÍ∞Å ÏïåÎ¶º",
           DefaultNotifyMessage(now),
           ToolTipIcon.Info
         );
@@ -48,9 +56,9 @@ namespace HourChimer
 
       static string DefaultNotifyMessage(DateTime time) {
         var hour = time.Hour;
-        string AM_PM = (hour < 12) ? "ø¿¿¸" : "ø¿»ƒ";
+        string AM_PM = (hour < 12) ? "Ïò§Ï†Ñ" : "Ïò§ÌõÑ";
         string hourString = (hour % 12 == 0) ? "12" : $"{hour % 12}";
-        return $"{AM_PM} {hourString}Ω√ ¡§∞¢¿‘¥œ¥Ÿ.";
+        return $"{AM_PM} {hourString}Ïãú Ï†ïÍ∞ÅÏûÖÎãàÎã§.";
       }
     }
   }
