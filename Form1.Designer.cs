@@ -1,20 +1,20 @@
-﻿namespace HourChimer
+﻿using System.IO;
+using System.Drawing;
+using System.Reflection;
+using System.Diagnostics;
+using System.Windows.Forms;
+using System.ComponentModel;
+
+namespace HourChimer
 {
   partial class Form1
   {
-    /// <summary>
-    ///  Required designer variable.
-    /// </summary>
-    private System.ComponentModel.IContainer components = null;
-    private System.Windows.Forms.NotifyIcon notifyIcon;
-    private System.Windows.Forms.ContextMenuStrip notifyIconMenu;
-    private System.Windows.Forms.ToolStripMenuItem exitMenuItem;
-    private System.Windows.Forms.Timer hourTimer; // 추가
+    private IContainer components = null;
+    private NotifyIcon notifyIcon;
+    private ContextMenuStrip notifyIconMenu;
+    private ToolStripMenuItem titleMenuItem, exitMenuItem;
+    private System.Windows.Forms.Timer hourTimer;
 
-    /// <summary>
-    ///  Clean up any resources being used.
-    /// </summary>
-    /// <param name="disposing">true if managed resources should be disposed; otherwise.</param>
     protected override void Dispose(bool disposing)
     {
       if (disposing && (components != null))
@@ -24,51 +24,34 @@
 
     #region Windows Form Designer generated code
 
-    /// <summary>
-    ///  Required method for Designer support - do not modify
-    ///  the contents of this method with the code editor.
-    /// </summary>
     private void InitializeComponent() {
       this.components = new System.ComponentModel.Container();
-      this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
-      this.notifyIconMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-      this.exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.hourTimer = new System.Windows.Forms.Timer(this.components); // 추가
+      this.notifyIcon = new NotifyIcon(this.components);
+      this.notifyIconMenu = new ContextMenuStrip(this.components);
+      this.titleMenuItem = new ToolStripMenuItem();
+      this.exitMenuItem = new ToolStripMenuItem();
+      this.hourTimer = new System.Windows.Forms.Timer(this.components);
 
       SuspendLayout();
-      // 
-      // notifyIconMenu
-      // 
-      this.notifyIconMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-          this.exitMenuItem
-      });
-      // 
-      // exitMenuItem
-      // 
+      Name = "HourChimer";
+      Text = "HourChimer";
+      // System tray icon is same as the executable file icon
+      this.notifyIcon.Icon = Icon.ExtractAssociatedIcon(Process.GetCurrentProcess().MainModule.FileName);
+      this.notifyIcon.Visible = true;
+      this.notifyIcon.Text = "HourChimer";
+      this.notifyIcon.ContextMenuStrip = this.notifyIconMenu;
+      this.notifyIconMenu.Items.Add(this.titleMenuItem);
+      this.notifyIconMenu.Items.Add(this.exitMenuItem);
+      this.titleMenuItem.Text = "HourChimer v1.0";
+      this.titleMenuItem.Enabled = false;
       this.exitMenuItem.Text = "종료";
       this.exitMenuItem.Click += (sender, e) => { this.ExitApplication(); };
-      // 
-      // notifyIcon
-      // 
-      this.notifyIcon.Icon = SystemIcons.Application;
-      this.notifyIcon.Text = "HourChimer";
-      this.notifyIcon.Visible = true;
-      this.notifyIcon.ContextMenuStrip = this.notifyIconMenu;
-      // 
-      // hourTimer
-      // 
-      this.hourTimer.Interval = 1000; // 1초마다 Tick 발생
-      // 
-      // Form1
-      // 
+      this.hourTimer.Interval = 1000; // 1 second
       AutoScaleDimensions = new SizeF(9F, 20F);
       AutoScaleMode = AutoScaleMode.Font;
       ClientSize = new Size(900, 426);
-      Name = "Form1";
-      Text = "Form1";
       ResumeLayout(false);
     }
-
     #endregion
   }
 }

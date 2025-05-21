@@ -6,13 +6,35 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Configurations>Debug;Release;Exe</Configurations>
   </PropertyGroup>
 
   <PropertyGroup>
     <PublishSingleFile>true</PublishSingleFile>
     <SelfContained>true</SelfContained> <!-- .NET 런타임 포함(권장) -->
     <RuntimeIdentifier>win-x64</RuntimeIdentifier> <!-- 또는 win-arm64, win-x86 등 -->
-    <PublishTrimmed>false</PublishTrimmed> <!-- 트리밍은 WinForms에서 권장하지 않음 -->
+    <PublishTrimmed>false</PublishTrimmed>
+    <Authors>TcDRair</Authors>
+    <Company>TcDRair</Company>
+    <Version>$(VersionPrefix)</Version>
+    <PackageIcon>icon.png</PackageIcon>
+    <ApplicationIcon>Assets\icon.ico</ApplicationIcon> <!-- 트리밍은 WinForms에서 권장하지 않음 -->
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Assets\icon.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="Assets\icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>

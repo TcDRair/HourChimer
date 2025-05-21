@@ -6,26 +6,26 @@ namespace HourChimer
   {
     public Form1() {
       InitializeComponent();
-      this.FormClosing += Form1_FormClosing;
-      this.hourTimer.Tick += HourTimer_Tick;
-      this.hourTimer.Start();
-      this.Load += Form1_Load;
+      FormClosing += Form1_FormClosing;
+      hourTimer.Tick += HourTimer_Tick;
+      hourTimer.Start();
+      Load += Form1_Load;
     }
 
     private bool reallyClose = false;
     private int lastHour = -1;
 
     private void Form1_Load(object? sender, EventArgs e) {
-      // this.Hide(); // Not working as expected
-      this.ShowInTaskbar = false;
-      this.WindowState = FormWindowState.Minimized;
-      this.Visible = false;
+      // Hide(); // Not working as expected
+      ShowInTaskbar = false;
+      WindowState = FormWindowState.Minimized;
+      Visible = false;
     }
 
     private void Form1_FormClosing(object? sender, FormClosingEventArgs e) {
       if (!reallyClose) {
         e.Cancel = true;
-        this.Hide();
+        Hide();
       }
     }
 
